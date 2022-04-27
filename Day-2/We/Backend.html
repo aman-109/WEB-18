@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Backend</h1>
+    
+    <form id="investorInput">
+
+        <input id="name"  type="text" placeholder="Type Your Name">
+        <input id="imgUrl" type="text" placeholder="Enter Image URL">
+        <input id="logoUrl" type="text" placeholder="Enter Company Logo">
+        <input id="designation" type="text" placeholder="Enter Role">
+        <input type="Submit">
+    </form>
+</body>
+</html>
+
+<script>
+
+    document.querySelector("form").addEventListener("submit",dataFunction)
+
+
+     // if(JSON.parse(localStorage.getItem("investorsData"))==null){
+  //   newArray =[]
+  // }
+  // else{
+  //   newArray=JSON.parse(localStorage.getItem("investorsData"))
+  // }
+
+                    //OR
+
+    // //   null, "", undefined,NaN  - false
+    var newArray = JSON.parse(localStorage.getItem("investorData")) || []
+
+
+  //     Array of objects
+
+    function dataFunction(){
+        event.preventDefault()
+
+        //idOfForm.idofInput.value--> syntax
+        var dataObj={
+            investorName: investorInput.name.value,
+            investorImg: investorInput.imgUrl.value,
+            investorCompLogo: investorInput.logoUrl.value,
+            investorRole: investorInput.designation.value,
+        };
+
+        newArray.push(dataObj)
+        // console.log(newArray)
+        localStorage.setItem("investorData",JSON.stringify(newArray))
+        window.location.reload()
+    }
+</script>
