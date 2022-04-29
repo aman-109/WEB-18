@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Login Here</h1>
+    <input id="email" type="text" placeholder="Enter Your Email">
+    <input id="password" type="password" placeholder="Enter Your Password">
+    <button id="btn">Login</button>
+</body>
+</html>
+
+<script>
+
+    var userData= JSON.parse(localStorage.getItem("inputData")) || null ;
+
+
+    document.querySelector("#btn").addEventListener("click",function(){
+
+        
+       
+        var data={
+            Email:document.querySelector("#email").value,
+            Pass:document.querySelector("#password").value,
+        }
+        // console.log(data.Email)
+        
+
+        if(userData === null)
+        {
+            alert("Create Your Account First")
+        }
+        else if(data.Email===userData.Email &&  data.Pass===userData.Pass)
+        {
+            
+            alert("Login Successful")
+          
+        }
+        else{
+            alert("Wrong Credentials")
+        
+        }
+    
+   
+            localStorage.setItem("loginInput",JSON.stringify(data))
+
+            window.location.reload();
+
+    
+    })
+   
+
+</script>
